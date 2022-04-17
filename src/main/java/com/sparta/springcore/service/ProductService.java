@@ -40,8 +40,10 @@ public class ProductService {
 //    }
 
 
-    public Product save(ProductRequestDto productRequestDto) throws SQLException {
-        Product product = new Product(productRequestDto);
+    //public Product createProduct(ProductRequestDto productRequestDto) throws SQLException {
+    public Product createProduct(ProductRequestDto requestDto, Long userId ) {  //2-10
+        //Product product = new Product(productRequestDto);
+        Product product = new Product(requestDto, userId);
         //ProductRepository productRepository = new ProductRepository();
 
         //return productRepository.insertDB(product);
@@ -63,10 +65,19 @@ public class ProductService {
         return product;
     }
 
+    /*
     public List<Product> getProducts(){
         List<Product> products = productRepository.findAll();
 
         return products;
+    }*/
+    // 회원 ID 로 등록된 상품 조회
+    public List<Product> getProducts(Long userId) {
+        return productRepository.findAllByUserId(userId);
     }
 
+    // 모든 상품 조회 (관리자용)
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
 }
