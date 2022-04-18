@@ -32,10 +32,23 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
+    @Column(nullable = true, unique = true)
+    private Long kakaoId;
+
+    //일반 폼 회원가입 생성자
     public User(String username, String password, String email, UserRoleEnum role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
+        this.kakaoId = null;
+    }
+
+    public User(String username, String password, String email, UserRoleEnum role, Long kakaoId) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.kakaoId = kakaoId;
     }
 }
